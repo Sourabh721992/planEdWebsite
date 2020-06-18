@@ -1,0 +1,555 @@
+/*
+      www.OnlineWebFonts.Com 
+      You must credit the author Copy this link on your web 
+      <div>Font made from <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>is licensed by CC BY 3.0</div>
+      OR
+      <a href="http://www.onlinewebfonts.com">oNline Web Fonts</a>
+*/
+@font-face {
+  font-family: "Avenir Book";
+  src: url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.eot"); /* IE9*/
+  src: url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.woff2")
+      format("woff2"),
+    /* chrome firefox */
+      url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.woff")
+      format("woff"),
+    /* chrome firefox */
+      url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.ttf")
+      format("truetype"),
+    /* chrome firefox opera Safari, Android, iOS 4.2+*/
+      url("https://db.onlinewebfonts.com/t/331ec49c0d78e469c42c1d814dd45838.svg#Avenir Book")
+      format("svg"); /* iOS 4.1- */
+}
+
+@media (max-width: 600px) {
+  /* For mobile phones: */
+
+  #verticalMenu {
+    width: 10%;
+  }
+
+  .col-sm-10 {
+    width: 90%;
+  }
+
+  #verticalnavbar {
+    position: fixed;
+    width: 10%;
+  }
+  #login .container #login-row #login-column #login-box {
+    margin-top: 80px;
+    /* max-width: 100%; */
+    height: 350px;
+    min-width: auto;
+    /* border: 1px solid #9c9c9c; */
+    background-color: #3a648a;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 0px;
+  }
+  #login #loginHeading {
+    padding-top: 10px;
+  }
+  #login
+    .container
+    #login-row
+    #login-column
+    #login-box
+    #login-form
+    #register-link {
+    margin-top: -85px;
+  }
+
+  #login .input-icons i {
+    position: absolute;
+    color: #11c5d9;
+  }
+
+  #login .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #login .icon {
+    padding: 10px;
+    min-width: 40px;
+  }
+
+  #login .input-field {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px;
+  }
+  .loginboard {
+    background-color: #0f3658 !important;
+    /* background-size: cover; */
+    /* background-position: left; */
+    height: 300vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+  }
+  #login .form-control {
+    height: 40px;
+    width: 98%;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: auto;
+    background-color: #f2f2f2;
+    font-family: "Avenir Book";
+    width: 100%;
+    font-size: 15px;
+  }
+
+  #verticalnavbar .navbar-nav .nav-link {
+    color: white !important;
+    transition: 0.3s ease !important;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    /* border-top: 4px solid transparent; */
+    /* border-bottom: 4px solid transparent; */
+    /* padding: 6px 0; */
+    font-size: 17px;
+    /* margin-left: 15px !important; */
+    width: 80%;
+    display: inline-block;
+    /* border-bottom: 1px solid grey; */
+  }
+
+  #planEdLogo {
+    height: 1.5rem;
+  }
+
+  .verticalbarextradiv {
+    height: 200vh;
+    background-color: #454c73 !important;
+  }
+}
+
+@media (min-width: 601px) {
+  #login .container #login-row #login-column #login-box {
+    margin-top: 80px;
+    max-width: 600px;
+    height: 350px;
+    min-width: 530px;
+    /* border: 1px solid #9c9c9c; */
+    background-color: #3a648a;
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+  }
+  #login
+    .container
+    #login-row
+    #login-column
+    #login-box
+    #login-form
+    #register-link {
+    margin-top: -85px;
+  }
+
+  #login .input-icons i {
+    position: absolute;
+    color: #11c5d9;
+  }
+
+  #login .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #login .icon {
+    padding: 10px;
+    min-width: 40px;
+  }
+
+  #login .input-field {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px;
+  }
+  .loginboard {
+    background-color: #0f3658 !important;
+    background-size: cover;
+    background-position: center;
+    height: 300vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+  }
+  #login .form-control {
+    height: 40px;
+    width: 452px;
+  }
+  /* html {
+    --scrollbarBG: #cfd8dc;
+    --thumbBG: #90a4ae;
+  }
+  body::-webkit-scrollbar {
+    width: 10px;
+  }
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+  body::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  } */
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 300vh;
+    overflow: auto;
+    background-color: #f2f2f2;
+    font-family: "Avenir Book";
+    min-width: 1200px;
+  }
+
+  #verticalnavbar .navbar-nav .nav-link {
+    color: white !important;
+    transition: 0.3s ease !important;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    /* border-top: 4px solid transparent; */
+    /* border-bottom: 4px solid transparent; */
+    padding: 6px 0;
+    font-size: 17px;
+    margin-left: 15px !important;
+    width: 80%;
+    display: inline-block;
+    /* border-bottom: 1px solid grey; */
+  }
+
+  #planEdLogo {
+    height: 45px;
+    width: 120px;
+  }
+
+  .verticalbarextradiv {
+    height: 300vh;
+    background-color: #454c73 !important;
+  }
+}
+
+.errorMsg {
+  font-size: 14px;
+  color: red;
+}
+
+.successMsg {
+  font-size: 14px;
+  color: #3bff48;
+}
+
+#about {
+  background-color: #0f3658 !important;
+  height: 300vh;
+  margin-top: -24px;
+  font-family: "Avenir Book";
+}
+
+#help {
+  background-color: #0f3658 !important;
+  height: 300vh;
+  margin-top: -24px;
+  font-family: "Avenir Book";
+}
+
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:visited {
+  /* background-color: #1ad9a3 !important; */
+  background-color: #1d3b80 !important;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: auto;
+  font-size: 18px;
+}
+
+.bg-dark {
+  background-color: #181e24 !important;
+}
+
+.link {
+  font-size: 15px;
+  color: #11c5d9;
+}
+/* .nav-link {
+} */
+
+.bg-light {
+  background-color: #454c73 !important;
+}
+
+.leftwatermark {
+  margin-left: -1000px !important;
+}
+
+.watermark {
+  margin-left: -1000px !important;
+}
+
+.toolbox-icon {
+  display: none !important;
+}
+#verticalnavbar .navbar-nav .fas {
+  width: 1rem;
+  display: inline-block;
+  color: white;
+}
+
+#verticalnavbar .navbar-nav .far {
+  width: 1rem;
+  display: inline-block;
+  color: white;
+}
+
+input[type="search"] {
+  border: 0.5px solid;
+}
+
+#verticalnavbar .navbar-nav > li:last-child {
+  border: none;
+}
+
+#verticalnavbar .navbar-nav .nav-link:hover {
+  /* border-top: 4px solid white; */
+  /* border-bottom: 4px solid white; */
+  background-color: grey;
+  /* padding: 6px 0; */
+}
+
+#verticalnavbar .navbar-nav .nav-link:active {
+  /* border-top: 4px solid white; */
+  /* border-bottom: 4px solid white; */
+  color: blue;
+  /* padding: 6px 0; */
+}
+
+#verticalnavbar .navbar-nav {
+  width: 100%;
+}
+
+#verticalnavbar .nav-item {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
+}
+
+#verticalnavbar .navbar-nav .nav-item:hover {
+  /* border-top: 4px solid white; */
+  /* border-bottom: 4px solid white; */
+  background-color: grey;
+  /* padding: 6px 0; */
+}
+
+/* #teacher .col-sm-2 {
+  margin-left: 0px !important;
+  padding: 0px !important;
+  margin-top: -25px;
+} */
+
+/* #liveSession .col-sm-2 {
+  margin-left: 0px !important;
+  padding: 0px !important;
+  margin-top: -25px;
+} */
+
+/* #liveSession .verticalbarextradiv {
+  height: 100vh;
+  background-color: #454c73 !important;
+} */
+
+#liveSession .iframe {
+  height: 30em;
+  width: 99%;
+  margin-top: 5rem;
+}
+
+#teacher .card-title {
+  font-size: 30px !important;
+  /* color: white; */
+}
+
+#teacher #h5TodaySchedule {
+  color: white !important;
+}
+
+#teacher #horizontalLine {
+  width: 98%;
+  border-left: 0.5px solid grey;
+}
+
+#teacher .card {
+  text-align: center;
+  border-radius: 10px;
+}
+
+#teacher .card-body #gridview > table {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+#teacher .card-body #gridview > table > thead > tr > th {
+  padding: 2px;
+}
+
+#teacher .card-body #gridview > table > tbody > tr > td {
+  padding: 1px;
+}
+
+#teacher .divider {
+  border-top: 3px double #8c8b8b;
+}
+
+#student .card-title {
+  font-size: 30px !important;
+  /* color: white; */
+}
+
+#student #h5TodaySchedule {
+  color: white !important;
+}
+
+#student #horizontalLine {
+  width: 98%;
+  border-left: 0.5px solid grey;
+}
+
+#student .card {
+  text-align: center;
+  border-radius: 10px;
+}
+
+#student .card-body #gridview > table {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-radius: 10px;
+}
+
+#student .card-body #gridview > table > thead > tr > th {
+  padding: 2px;
+}
+
+#student .card-body #gridview > table > tbody > tr > td {
+  padding: 1px;
+}
+
+#student .divider {
+  border-top: 3px double #8c8b8b;
+}
+
+#gridview .table > thead {
+  background-color: #364c59 !important;
+  color: white;
+}
+
+#gridview .table > tbody > tr > td {
+  padding: 0.3rem;
+}
+
+#gridview .table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #d5e7f2;
+}
+
+#gridview .table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+  background-color: #a0c3d9;
+}
+
+#info_wrapper {
+  font-family: "Avenir Book";
+}
+/* #content .col-sm-2 {
+  margin-left: 0px !important;
+  padding: 0px !important;
+  margin-top: -25px;
+} */
+
+/* #content .verticalbarextradiv {
+  height: 100vh;
+  background-color: #454c73 !important;
+} */
+
+/* #batchDropdownlist {
+  width: 95%;
+  height: 35px;
+  font-size: 14px;
+  margin: 0px;
+} */
+
+#content .card {
+  border-radius: 10px;
+}
+
+#content #text {
+  height: 35px !important;
+  width: 95%;
+}
+
+.col-sm-2 {
+  margin-left: 0px !important;
+  padding: 0px !important;
+  margin-top: -25px;
+}
+
+/* #message .verticalbarextradiv {
+  height: 100vh;
+  background-color: #454c73 !important;
+} */
+
+/*Timing Dropdown list*/
+.modal_container {
+  width: 300px !important;
+}
+
+.react_times_button {
+  height: 35px;
+}
+
+.preview_container {
+  height: 35px;
+  line-height: 35px;
+}
+
+.preview_container svg {
+  top: 5px;
+}
+
+.text {
+  height: 35px;
+}
+
+#batchDropdownlist {
+  width: 100%;
+  height: 35px;
+  font-size: 14px;
+  margin: 0px;
+}
+
+#message .card {
+  border-radius: 10px;
+}
+
+#message #text {
+  height: 35px !important;
+  width: 95%;
+}
