@@ -6,6 +6,33 @@ function About() {
   const [deviceWidth, setDeviceWidth] = useState(-1);
   useEffect(() => {
     setDeviceWidth($(window).width());
+    //Mobile Screen rotation code
+    let mql = window.matchMedia("(orientation: portrait)");
+    // If there are matches, we're in portrait
+    if (mql.matches) {
+      // Portrait orientation
+      setDeviceWidth($(window).width());
+    } else {
+      // Landscape orientation
+      setDeviceWidth($(window).width());
+    }
+
+    // Add a media query change listener
+    mql.addListener(
+      function (m) {
+        if (m.matches) {
+          // Changed to portrait
+          setDeviceWidth($(window).width());
+        } else {
+          // Changed to landscape
+          setDeviceWidth($(window).width());
+        }
+      }.bind(this)
+    );
+
+    window.addEventListener("resize", () => {
+      setDeviceWidth($(window).width());
+    });
   });
 
   const webFrom = (
@@ -300,7 +327,7 @@ function About() {
           <div className="row">
             <div className="col-sm-12 text-center">
               <img
-                src={require("../images/planEd.png")}
+                src={require("../images/planEdLogo.jpeg")}
                 style={{ height: "3rem" }}
               ></img>
             </div>

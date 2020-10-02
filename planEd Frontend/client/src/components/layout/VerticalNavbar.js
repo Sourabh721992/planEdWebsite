@@ -61,6 +61,17 @@ class VerticalNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
+                <i className="fas fa-comment-dots"></i>
+                <Link
+                  className="nav-link"
+                  onClick={() =>
+                    window.open("https://planed.in/chat/home", "_blank")
+                  }
+                >
+                  planEd Chat
+                </Link>
+              </li>
+              <li className="nav-item">
                 <i className="fas fa-sign-out-alt"></i>
                 <Link className="nav-link" to="/" onClick={this.onLogoutUser}>
                   Logout
@@ -94,6 +105,16 @@ class VerticalNavbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/message">
                   <i className="fas fa-sticky-note"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  onClick={() =>
+                    window.open("https://planed.in/chat/home", "_blank")
+                  }
+                >
+                  <i className="fas fa-comment-dots"></i>
                 </Link>
               </li>
               <li className="nav-item">
@@ -134,6 +155,18 @@ class VerticalNavbar extends Component {
                 </Link>
               </li>
               <li className="nav-item">
+                <i className="fas fa-comment-dots"></i>
+                <Link
+                  className="nav-link"
+                  onClick={() =>
+                    window.open("https://planed.in/chat/home", "_blank")
+                  }
+                >
+                  planEd Chat
+                </Link>
+              </li>
+
+              <li className="nav-item">
                 <i className="fas fa-sign-out-alt"></i>
                 <Link className="nav-link" to="/" onClick={this.onLogoutUser}>
                   Logout
@@ -162,6 +195,85 @@ class VerticalNavbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/message">
                   <i className="fas fa-sticky-note"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  onClick={() =>
+                    window.open("https://planed.in/chat/home", "_blank")
+                  }
+                >
+                  <i className="fas fa-comment-dots"></i>
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/" onClick={this.onLogoutUser}>
+                  <i className="fas fa-sign-out-alt"></i>
+                </Link>
+              </li>
+            </ul>
+          );
+        }
+        break;
+      case "A":
+        if (this.props.deviceWidth > 600) {
+          return (
+            <ul className="navbar-nav hidden-xs">
+              {/* <li className="nav-item">
+                <i className="fas fa-home"></i>
+                <Link className="nav-link" to="/student">
+                  Home
+                </Link>
+              </li> */}
+              <li className="nav-item">
+                <i className="fas fa-school"></i>
+                <Link className="nav-link" to="/batch">
+                  Batch Manager
+                </Link>
+              </li>
+              <li className="nav-item">
+                <i className="fas fa-user"></i>
+                <Link className="nav-link" to="/manageinstructor">
+                  Instructor Manager
+                </Link>
+              </li>
+              <li className="nav-item">
+                <i className="fas fa-rupee-sign"></i>
+                <Link className="nav-link" to="/fee">
+                  Feebot
+                </Link>
+              </li>
+              <li className="nav-item">
+                <i className="fas fa-sign-out-alt"></i>
+                <Link className="nav-link" to="/" onClick={this.onLogoutUser}>
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          );
+        } else {
+          return (
+            <ul className="navbar-nav hidden-xs">
+              {/* <li className="nav-item">
+                <Link className="nav-link" to="/student">
+                  <i className="fas fa-home"></i>
+                </Link>
+              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/batch">
+                  <i className="fas fa-school"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/manageteacher">
+                  <i className="fas fa-user"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/fee">
+                  <i className="fas fa-rupee-sign"></i>
                 </Link>
               </li>
               <li className="nav-item">

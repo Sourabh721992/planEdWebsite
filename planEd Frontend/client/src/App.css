@@ -83,6 +83,7 @@
     padding: 10px;
     padding-left: 35px;
   }
+
   .loginboard {
     background-color: #0f3658 !important;
     /* background-size: cover; */
@@ -91,7 +92,76 @@
     margin-top: -24px;
     margin-bottom: -50px;
   }
+
   #login .form-control {
+    height: 40px;
+    width: 98%;
+  }
+
+  #password .container #password-row #password-column #password-box {
+    margin-top: 100px;
+    /* max-width: 600px; */
+    height: 270px;
+    min-width: auto;
+    /* border: 1px solid #9c9c9c; */
+    background-color: #3a648a;
+  }
+  #password
+    .container
+    #password-row
+    #password-column
+    #password-box
+    #password-form {
+    padding: 0px;
+  }
+
+  #password #passwordHeading {
+    padding-top: 10px;
+  }
+
+  #password #passwordNote {
+    font-size: 0.65rem;
+  }
+
+  #password
+    .container
+    #password-row
+    #password-column
+    #password-box
+    #password-form
+    #register-link {
+    margin-top: -85px;
+  }
+
+  #password .input-icons i {
+    position: absolute;
+    color: #11c5d9;
+  }
+
+  #password .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #password .icon {
+    padding: 10px;
+    min-width: 40px;
+  }
+
+  #password .input-field {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px;
+  }
+  .passwordboard {
+    background-color: #0f3658 !important;
+    background-size: cover;
+    background-position: center;
+    height: 300vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+  }
+  #password .form-control {
     height: 40px;
     width: 98%;
   }
@@ -187,6 +257,65 @@
     height: 40px;
     width: 452px;
   }
+
+  #password .container #password-row #password-column #password-box {
+    margin-top: 100px;
+    max-width: 600px;
+    height: 270px;
+    min-width: 530px;
+    /* border: 1px solid #9c9c9c; */
+    background-color: #3a648a;
+  }
+  #password
+    .container
+    #password-row
+    #password-column
+    #password-box
+    #password-form {
+    padding: 20px;
+  }
+  #password
+    .container
+    #password-row
+    #password-column
+    #password-box
+    #password-form
+    #register-link {
+    margin-top: -85px;
+  }
+
+  #password .input-icons i {
+    position: absolute;
+    color: #11c5d9;
+  }
+
+  #password .input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #password .icon {
+    padding: 10px;
+    min-width: 40px;
+  }
+
+  #password .input-field {
+    width: 100%;
+    padding: 10px;
+    padding-left: 35px;
+  }
+  .passwordboard {
+    background-color: #0f3658 !important;
+    background-size: cover;
+    background-position: center;
+    height: 300vh;
+    margin-top: -24px;
+    margin-bottom: -50px;
+  }
+  #password .form-control {
+    height: 40px;
+    width: 452px;
+  }
   /* html {
     --scrollbarBG: #cfd8dc;
     --thumbBG: #90a4ae;
@@ -262,6 +391,13 @@
 }
 
 #help {
+  background-color: #0f3658 !important;
+  height: 300vh;
+  margin-top: -24px;
+  font-family: "Avenir Book";
+}
+
+#instiAdverstising {
   background-color: #0f3658 !important;
   height: 300vh;
   margin-top: -24px;
@@ -552,4 +688,160 @@ input[type="search"] {
 #message #text {
   height: 35px !important;
   width: 95%;
+}
+
+#website #mainBG_img {
+  background-color: rgb(0, 0, 0);
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: -25px;
+}
+
+#website #divPlanEdDescription {
+  position: absolute;
+  z-index: 999;
+}
+
+#website #divPlanEdDescription #lblAIPowered {
+  font-family: Avenir;
+  color: rgb(15, 97, 128);
+  font-weight: Medium;
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: inline-block;
+}
+
+#website #divPlanEdDescription #lblDescription {
+  font-family: Avenir;
+  color: rgb(0, 0, 0);
+  font-weight: Medium;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+#website #divPlanEdDescription #lblAIPoweredMobile {
+  font-family: Avenir;
+  color: rgb(15, 97, 128);
+  font-weight: Medium;
+  font-size: 1rem;
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: inline-block;
+}
+
+#website #divPlanEdDescription #lblDescriptionMobile {
+  font-family: Avenir;
+  color: rgb(0, 0, 0);
+  font-weight: Medium;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+#website #divServices #OurServices {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Medium;
+  font-size: 2rem;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+#website #divServices #OurServicesMobile {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Medium;
+  font-size: 1rem;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+#website #divServices #lblServices {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Light;
+  font-size: 1.5rem;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+
+#website #divServices #lblServicesMobile {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Light;
+  font-size: 0.7rem;
+  margin-bottom: 60px;
+  display: inline-block;
+}
+
+#website #divServices #blueRectangle {
+  background-color: rgb(26, 43, 109);
+  /* margin-top: 80px; */
+  text-align: center;
+}
+
+#website #divServices .lblService {
+  font-family: Avenir;
+  color: rgb(6, 93, 188);
+  font-weight: Medium;
+  font-size: 1.25rem;
+  text-align: center;
+  display: inline-block;
+}
+
+#website #divServices .lblServiceDescription {
+  font-family: Avenir;
+  /* color: #e83e8c; */
+  color: black;
+  font-weight: Medium;
+  font-size: 1rem;
+  text-align: center;
+  display: inline-block;
+}
+
+#website #divServices .divServiceBox {
+  /* width: 15%; */
+  padding: 10px;
+  background-color: rgb(232, 232, 232);
+  box-shadow: 3px 3px 2px 4px #ccc;
+  /* margin-top: -30px; */
+  text-align: center;
+}
+
+#website #divAppInfo #lblAppBrief {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Light;
+  font-size: 1.5rem;
+  /* text-align: left; */
+  /* margin-left: 111px; */
+  /* margin-right: 0px; */
+  /* margin-top: 310px; */
+  display: inline-block;
+}
+
+#website #divAppInfo #lblAppBriefMobile {
+  font-family: Avenir;
+  color: rgb(255, 255, 255);
+  font-weight: Light;
+  font-size: 0.7rem;
+  display: inline-block;
+}
+
+.circle {
+  border-radius: 100%;
+  background: green;
+  display: inline-block;
+  line-height: 100px;
 }

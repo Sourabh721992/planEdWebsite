@@ -29,7 +29,12 @@ class Message extends Component {
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated == false) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       //Get the message content details from server
       if (isEmpty(this.props.message)) {
@@ -80,7 +85,12 @@ class Message extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.auth.isAuthenticated == false) {
-      props.history.push("/");
+      let loginUrl = props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        props.history.push(loginUrl);
+      } else {
+        props.history.push("/default");
+      }
     } else {
       if (props.message != state.messageDb) {
         return {
@@ -428,6 +438,11 @@ class Message extends Component {
               {messageDb.length > 0 && (
                 <Gridview data={messageDb} comp="Message"></Gridview>
               )}
+              {messageDb.length == 0 && (
+                <span className="alert alert-info">
+                  No announcements exist as of now.
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -440,6 +455,7 @@ Message.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   success: PropTypes.object.isRequired,
+  loginUrl: PropTypes.object.isRequired,
   // message: PropTypes.arrayOf(
   //   PropTypes.shape({
   //     "Batch Name": PropTypes.string,
@@ -456,6 +472,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
   success: state.success,
   message: state.message,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, {

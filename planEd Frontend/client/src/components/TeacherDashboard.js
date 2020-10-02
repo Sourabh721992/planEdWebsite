@@ -23,7 +23,12 @@ class TeacherDashboard extends Component {
       this.props.auth.isAuthenticated == false ||
       this.props.auth.user.role.search("T") < 0
     ) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       GetCurrentDate().then((date) => {
         this.setState({ currentDate: date });
@@ -68,7 +73,12 @@ class TeacherDashboard extends Component {
       props.auth.isAuthenticated == false ||
       props.auth.user.role.search("T") < 0
     ) {
-      props.history.push("/");
+      let loginUrl = props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        props.history.push(loginUrl);
+      } else {
+        props.history.push("/default");
+      }
     } else {
       if (props.session != state.session) {
         let session = props.session;
@@ -286,6 +296,7 @@ TeacherDashboard.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   session: state.session,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, { getLiveSessionList })(

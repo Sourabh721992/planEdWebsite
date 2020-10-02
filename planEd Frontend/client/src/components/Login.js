@@ -21,6 +21,10 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  componentDidMount() {
+    //alert(window.location.href);
+  }
+
   onSubmit(e) {
     e.preventDefault();
     let userDetails = {
@@ -45,6 +49,11 @@ class Login extends Component {
       nextProps.auth.user.role.search("S") >= 0
     ) {
       this.props.history.push("/student");
+    } else if (
+      nextProps.auth.isAuthenticated &&
+      nextProps.auth.user.role.search("A") >= 0
+    ) {
+      this.props.history.push("/batch");
     }
   }
 
@@ -111,7 +120,14 @@ class Login extends Component {
                         <label className="text-white">
                           Forgot Password?&nbsp;
                         </label>
-                        <Link to="/" className="link">
+                        <Link
+                          to="/password"
+                          style={{
+                            fontSize: 15,
+                            color: "#11c5d9",
+                            // borderBottom: "1px solid #11c5d9",
+                          }}
+                        >
                           Click Here
                         </Link>
                       </span>

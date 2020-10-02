@@ -41,7 +41,12 @@ class ScheduleSession extends Component {
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated == false) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       //Get the uploaded session details from server
       if (isEmpty(this.props.session)) {
@@ -79,7 +84,12 @@ class ScheduleSession extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.auth.isAuthenticated == false) {
-      props.history.push("/");
+      let loginUrl = props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        props.history.push(loginUrl);
+      } else {
+        props.history.push("/default");
+      }
     } else {
       if (props.session != state.session) {
         return {
@@ -976,6 +986,7 @@ ScheduleSession.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   success: PropTypes.object.isRequired,
+  loginUrl: PropTypes.object.isRequired,
   saveLiveSession: PropTypes.func.isRequired,
   getLiveSessionList: PropTypes.func.isRequired,
 };
@@ -985,6 +996,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
   success: state.success,
   session: state.session,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, {

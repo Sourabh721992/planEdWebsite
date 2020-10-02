@@ -5,6 +5,7 @@ import successReducer from "./successReducer";
 import contentReducer from "./contentReducer";
 import messageReducer from "./messageReducer";
 import liveSessionReducer from "./liveSessionReducer";
+import loginUrlReducer from "./loginUrlReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   content: contentReducer,
   message: messageReducer,
   session: liveSessionReducer,
+  loginUrl: loginUrlReducer,
 });

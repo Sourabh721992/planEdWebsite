@@ -6,6 +6,7 @@ import {
   SET_USER_CONTENT,
   GET_SUCCESS_MSG,
   SET_USER_MSG,
+  SET_USER_LOGIN_URL,
 } from "./types";
 
 //Login User action
@@ -28,6 +29,11 @@ export const loginUser = (userDetails) => (dispatch) => {
               let dt = new Date();
               dt.setMinutes(dt.getMinutes() + 10);
               res.data.data["exp"] = Math.trunc(dt.getTime() / 1000);
+
+              dispatch({
+                type: SET_USER_LOGIN_URL,
+                payload: { url: window.location.pathname },
+              });
 
               localStorage.setItem("user", JSON.stringify(res.data.data));
               dispatch(setCurrentUser(res.data.data));
@@ -63,6 +69,10 @@ export const loginUser = (userDetails) => (dispatch) => {
               res.data.data["exp"] = Math.trunc(dt.getTime() / 1000);
 
               localStorage.setItem("user", JSON.stringify(res.data.data));
+              dispatch({
+                type: SET_USER_LOGIN_URL,
+                payload: { url: window.location.pathname },
+              });
               dispatch(setCurrentUser(res.data.data));
               //Setting erros to {}
               dispatch({
@@ -78,6 +88,47 @@ export const loginUser = (userDetails) => (dispatch) => {
           });
       }
       //Region for student login -- end
+      if ("aId" in res.data) {
+        let adminDetails = {
+          aId: res.data.aId,
+        };
+        if (res.data.flag == 1) {
+          axios
+            .post("https://planed.in/api/users/web/admins/ins", adminDetails)
+            .then((res) => {
+              if (res.data.flag == 1) {
+                //Set user information in local storage
+                //Once logged in user should be active for 1 hour. For this I am storing user in
+                //local storage
+                let dt = new Date();
+                dt.setMinutes(dt.getMinutes() + 10);
+                res.data.data["exp"] = Math.trunc(dt.getTime() / 1000);
+                dispatch({
+                  type: SET_USER_LOGIN_URL,
+                  payload: { url: window.location.pathname },
+                });
+                localStorage.setItem("user", JSON.stringify(res.data.data));
+                dispatch(setCurrentUser(res.data.data));
+
+                //Setting erros to {}
+                dispatch({
+                  type: GET_ERRORS,
+                  payload: {},
+                });
+              } else {
+                dispatch({
+                  type: GET_ERRORS,
+                  payload: res.data,
+                });
+              }
+            });
+        } else {
+          dispatch({
+            type: GET_ERRORS,
+            payload: res.data,
+          });
+        }
+      }
     } else {
       dispatch({
         type: GET_ERRORS,
@@ -117,8 +168,10 @@ export const logoutUser = () => (dispatch) => {
     type: SET_USER_MSG,
     payload: {},
   });
+
   //Set current user to {}
   dispatch(setCurrentUser({}));
   //remove user from local storage
   localStorage.removeItem("user");
+  //dispatch(setCurrentUser({}));
 };

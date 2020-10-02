@@ -11,7 +11,37 @@ function Help() {
 
   useEffect(() => {
     setDeviceWidth($(window).width());
+    //Mobile Screen rotation code
+    let mql = window.matchMedia("(orientation: portrait)");
+    // If there are matches, we're in portrait
+    if (mql.matches) {
+      // Portrait orientation
+      setDeviceWidth($(window).width());
+    } else {
+      // Landscape orientation
+      setDeviceWidth($(window).width());
+    }
+
+    // Add a media query change listener
+    mql.addListener(
+      function (m) {
+        if (m.matches) {
+          // Changed to portrait
+          setDeviceWidth($(window).width());
+        } else {
+          // Changed to landscape
+          setDeviceWidth($(window).width());
+        }
+      }.bind(this)
+    );
+
+    window.addEventListener("resize", UpdateWidth);
+    return () => window.removeEventListener("resize", UpdateWidth);
   });
+
+  const UpdateWidth = () => {
+    setDeviceWidth($(window).width());
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();

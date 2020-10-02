@@ -19,7 +19,12 @@ class StudentDashboard extends Component {
       this.props.auth.isAuthenticated == false ||
       this.props.auth.user.role.search("S") < 0
     ) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       GetCurrentDate().then((date) => {
         this.setState({ currentDate: date });
@@ -56,7 +61,12 @@ class StudentDashboard extends Component {
       props.auth.isAuthenticated == false ||
       props.auth.user.role.search("S") < 0
     ) {
-      props.history.push("/");
+      let loginUrl = props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        props.history.push(loginUrl);
+      } else {
+        props.history.push("/default");
+      }
     } else {
     }
     return null;
@@ -142,7 +152,7 @@ class StudentDashboard extends Component {
                       style={{ backgroundColor: "#B3E8DF" }} //FFEA96
                     >
                       <div className="card-body">
-                        <h5 className="card-title">{user.studentCount}</h5>
+                        <h5 className="card-title">{user.studentCount - 1}</h5>
                         <h6 className="card-subtitle mb-2 text-muted">
                           Classmates
                         </h6>
@@ -252,10 +262,12 @@ class StudentDashboard extends Component {
 
 StudentDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
+  loginUrl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, {})(StudentDashboard);

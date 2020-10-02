@@ -13,6 +13,12 @@ import ScheduleSession from "./components/ScheduleSession";
 import About from "./components/About";
 import Help from "./components/Help";
 import Student from "./components/StudentDashboard";
+import ForgotPassword from "./components/ForgetPassword";
+import Batch from "./components/Batch";
+import MangeInstructor from "./components/ManageInstructor";
+import InstiSpecificLogin from "./components/InstiSpecificLogin";
+import InstiAdvertising from "./components/InstiAdvertising";
+import Website from "./components/Website";
 
 import "./App.css";
 
@@ -24,7 +30,7 @@ if (localStorage.getItem("user")) {
   const currentTime = Math.trunc(new Date().getTime() / 1000);
   if (userDetails.exp < currentTime) {
     store.dispatch(logoutUser());
-    window.location.href = "/";
+    window.location.href = "/default";
   }
 }
 
@@ -34,7 +40,8 @@ function App() {
       <Router>
         <div className="App">
           <Navbar></Navbar>
-          <Route exact path="/" component={Login}></Route>
+          <Route exact path="/" component={Website}></Route>
+          <Route exact path="/default" component={Login}></Route>
           <Route exact path="/teacher" component={Teacher}></Route>
           <Route exact path="/student" component={Student}></Route>
           <Route exact path="/livesession" component={LiveSession}></Route>
@@ -43,6 +50,19 @@ function App() {
           <Route exact path="/session" component={ScheduleSession}></Route>
           <Route exact path="/about" component={About}></Route>
           <Route exact path="/help" component={Help}></Route>
+          <Route exact path="/password" component={ForgotPassword}></Route>
+          <Route exact path="/batch" component={Batch}></Route>
+          <Route path="/login" component={InstiSpecificLogin}></Route>
+          <Route
+            exact
+            path="/manageinstructor"
+            component={MangeInstructor}
+          ></Route>
+          <Route
+            exact
+            path="/instiadvertising"
+            component={InstiAdvertising}
+          ></Route>
         </div>
       </Router>
     </Provider>

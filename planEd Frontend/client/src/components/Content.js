@@ -30,7 +30,12 @@ class Content extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated == false) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       //Get the uploaded content details from server
       if (isEmpty(this.props.content)) {
@@ -81,7 +86,12 @@ class Content extends Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.auth.isAuthenticated == false) {
-      props.history.push("/");
+      let loginUrl = props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        props.history.push(loginUrl);
+      } else {
+        props.history.push("/default");
+      }
     } else {
       if (props.content != state.content) {
         return {
@@ -607,6 +617,11 @@ class Content extends Component {
               {content.length > 0 && (
                 <Gridview data={content} comp="Content"></Gridview>
               )}
+              {content.length == 0 && (
+                <span className="alert alert-info">
+                  No study material has been uploaded.
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -619,6 +634,7 @@ Content.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   success: PropTypes.object.isRequired,
+  loginUrl: PropTypes.object.isRequired,
   // content: PropTypes.arrayOf(
   //   PropTypes.shape({
   //     "Batch Name": PropTypes.string,
@@ -636,6 +652,7 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
   success: state.success,
   content: state.content,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, { uploadContent, getContentList })(

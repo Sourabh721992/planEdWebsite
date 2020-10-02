@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Jitsi from "react-jitsi";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import VerticalNavbar from "./layout/VerticalNavbar";
@@ -11,6 +10,7 @@ import $ from "jquery";
 class LiveSession extends Component {
   constructor() {
     super();
+
     this.state = {
       room: "",
       name: "",
@@ -19,18 +19,32 @@ class LiveSession extends Component {
       studentSession: [],
       deviceWidth: -1,
       deviceHeight: -1,
+      api: null,
     };
     this.onChange = this.onChange.bind(this);
+    this.EndCall = this.EndCall.bind(this);
     this.handleClick.bind(this);
   }
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated == false) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
     } else {
       //This indicates that teacher has initiated the session.
       if (this.props.auth.user.role == "T") {
         if (typeof this.props.location.aboutProps != "undefined") {
+          //Loading Jitsi Meet Script
+          const script = document.createElement("script");
+          script.src = "https://meet.jit.si/external_api.js";
+          script.async = true;
+          script.onload = () => this.scriptLoaded();
+          document.body.appendChild(script);
+
           this.setState({ name: this.props.auth.user.tNm });
           this.setState({ room: this.props.location.aboutProps["room"] });
           this.setState({
@@ -98,9 +112,127 @@ class LiveSession extends Component {
       );
     }
   }
+
+  scriptLoaded() {
+    const domain = "meet.jit.si";
+    const options = {
+      roomName: this.state.room,
+      width: "100%",
+      height: this.state.deviceHeight - 70,
+      parentNode: document.querySelector("#meet"),
+      userInfo: {
+        displayName: this.state.name,
+      },
+      interfaceConfigOverwrite: {
+        TOOLBAR_BUTTONS: [
+          "microphone",
+          "camera",
+          "closedcaptions",
+          "desktop",
+          // "embedmeeting",
+          "fullscreen",
+          "fodeviceselection",
+          // "hangup",
+          // "profile",
+          "chat",
+          "recording",
+          "livestreaming",
+          "etherpad",
+          // "sharedvideo",
+          //"settings",
+          "raisehand",
+          "videoquality",
+          "filmstrip",
+          //"invite",
+          "feedback",
+          "stats",
+          //"shortcuts",
+          "tileview",
+          //"videobackgroundblur",
+          "download",
+          //"help",
+          "mute-everyone",
+          // "security",
+        ],
+        DEFAULT_REMOTE_DISPLAY_NAME: this.state.name,
+        SHOW_PROMOTIONAL_CLOSE_PAGE: true,
+      },
+      configOverwrite: {
+        enableNoAudioDetection: true,
+        enableNoisyMicDetection: true,
+        startWithVideoMuted: false,
+        fileRecordingsEnabled: false,
+        liveStreamingEnabled: false,
+        disableThirdPartyRequests: true,
+        disableRemoteMute: true,
+        disableDeepLinking: true,
+        enableCalendarIntegration: false,
+      },
+    };
+    this.state.api = new window.JitsiMeetExternalAPI(domain, options);
+
+    // this.state.api.executeCommand("displayName", this.state.name);
+
+    this.state.api.on("readyToClose", () => {
+      this.state.api.dispose();
+      this.setState({ call: false });
+      //Once call ends refresh page for student
+      if (this.props.auth.user.role == "S") {
+        window.location.reload();
+      }
+    });
+
+    // if (this.props.auth.user.role == "S") {
+    //   this.state.api.addEventListener("passwordRequired", () => {
+    //     this.state.api.executeCommand("password", this.state.password);
+    //   });
+
+    //   // when local user has joined the video conference
+    //   this.state.api.addEventListener("videoConferenceJoined", (response) => {
+    //     this.state.api.executeCommand("password", this.state.password);
+    //   });
+    // } else {
+    //   setTimeout(() => {
+    //     this.state.api.addEventListener("passwordRequired", () => {
+    //       this.state.api.executeCommand("password", this.state.password);
+    //     });
+
+    //     // when local user has joined the video conference
+    //     this.state.api.addEventListener("videoConferenceJoined", (response) => {
+    //       this.state.api.executeCommand("password", this.state.password);
+    //     });
+    //   }, 10);
+    // }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated == false) {
-      this.props.history.push("/");
+      let loginUrl = this.props.loginUrl.url.toString();
+      if (loginUrl.indexOf("login") > -1) {
+        this.props.history.push(loginUrl);
+      } else {
+        this.props.history.push("/default");
+      }
+    }
+  }
+
+  EndCall() {
+    if (this.state.api != null) {
+      this.state.api.dispose();
+      if (this.props.auth.user.role == "T") {
+        this.props.history.push("/teacher");
+      } else this.props.history.push("/student");
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.api != null) {
+      this.state.api.dispose();
+
+      //Once call ends refresh page for student
+      //if (this.props.auth.user.role == "S") {
+      //window.location.reload();
+      //}
     }
   }
 
@@ -111,6 +243,13 @@ class LiveSession extends Component {
       password: password,
     });
     this.setState({ call: true });
+
+    //Loading Jitsi Meet Script
+    const script = document.createElement("script");
+    script.src = "https://meet.jit.si/external_api.js";
+    script.async = true;
+    script.onload = () => this.scriptLoaded();
+    document.body.appendChild(script);
   };
 
   onChange = (e) => {
@@ -120,26 +259,6 @@ class LiveSession extends Component {
   handleClick = (event) => {
     event.preventDefault();
     if (this.state.room && this.state.name) this.setState({ call: true });
-  };
-
-  handleAPI = (JitsiMeetAPI) => {
-    JitsiMeetAPI.addEventListener("readyToClose", () => {
-      // alert(JitsiMeetAPI.getNumberOfParticipants());
-      JitsiMeetAPI.dispose();
-      this.setState({ call: false });
-      //Once call ends refresh page for student
-      if (this.props.auth.user.role == "S") {
-        window.location.reload();
-      }
-    });
-    JitsiMeetAPI.addEventListener("videoConferenceJoined", () => {
-      // console.log($("#leftwatermark"));
-    });
-    // if (this.props.auth.user.role == "S") {
-    JitsiMeetAPI.addEventListener("passwordRequired", () => {
-      JitsiMeetAPI.executeCommand("password", this.state.password);
-    });
-    // }
   };
 
   render() {
@@ -163,57 +282,48 @@ class LiveSession extends Component {
             func={this.StartLiveSession}
           ></Gridview>
         )}
+        {studentSession.length == 0 && (
+          <span className="alert alert-info">
+            No live sessions exist as of now.
+          </span>
+        )}
       </div>
     );
+    const StudentJitsiHTML = <div id="meet"></div>;
+    const TeacherJitsiHTML = <div id="meet"></div>;
+
     return this.state.call ? (
       <div id="liveSession">
-        {/* <div className="container-fluid"> */}
-        {/* <div className="row"> */}
-        {/* <div className="col-sm-2">
-              <div className="verticalbar">
-                <VerticalNavbar></VerticalNavbar>
-              </div>
-              <div className="verticalbarextradiv"></div>
-            </div> */}
-        <div
-          // className="col-sm-12"
-          style={{ backgroundColor: "#FFFFFF", marginTop: -25 }}
-        >
-          {/* <div style={{ height: "2rem" }}></div> */}
+        <div style={{ backgroundColor: "#FFFFFF", marginTop: -25 }}>
           <div style={{ height: deviceHeight, width: "100%" }}>
-            <Jitsi
-              roomName={this.state.room}
-              displayName={this.state.name}
-              password={this.state.password}
-              // loadingComponent={<p>Loading ...</p>}
-              containerStyle={{ width: "100%", height: deviceHeight }}
-              config={{
-                startWithVideoMuted: true,
-                liveStreamingEnabled: false,
-                fileRecordingsEnabled: false,
-                fileRecordingsServiceEnabled: false,
-                fileRecordingsServiceSharingEnabled: false,
-                disableThirdPartyRequests: true,
-                disableRemoteMute: true,
-                disableDeepLinking: true,
-                enableCalendarIntegration: false,
-                // SHOW_PROMOTIONAL_CLOSE_PAGE: false,
-                // SHOW_BRAND_WATERMARK: false,
-                // SHOW_DEEP_LINKING_IMAGE: false,
-                // SHOW_CHROME_EXTENSION_BANNER: false,
-              }}
-              // interfaceConfig={{
-              //   SHOW_PROMOTIONAL_CLOSE_PAGE: false,
-              //   SHOW_BRAND_WATERMARK: false,
-              //   SHOW_CHROME_EXTENSION_BANNER: false,
-              //   SHOW_DEEP_LINKING_IMAGE: false,
-              // }}
-              onAPILoad={this.handleAPI}
-            ></Jitsi>
+            {user.role == "T" && TeacherJitsiHTML}
+            {user.role == "S" && StudentJitsiHTML}
           </div>
         </div>
-        {/* </div> */}
-        {/* </div> */}
+        <div>
+          <input
+            type="submit"
+            name="submit"
+            // className="btn btn-info btn-md"
+            value="End Call"
+            style={{
+              marginTop: 0 - this.state.deviceHeight - 52,
+              marginLeft: this.state.deviceWidth - 350,
+              position: "absolute",
+              color: "red",
+              backgroundColor: "transparent",
+              zIndex: 999,
+              borderColor: "red",
+              borderRadius: "1rem",
+              padding: "10px",
+              letterSpacing: "0.1rem",
+              borderWidth: "1px",
+              borderColor: "red",
+              fontWeight: "bold",
+            }}
+            onClick={this.EndCall}
+          />
+        </div>
       </div>
     ) : (
       <div id="liveSession">
@@ -243,10 +353,12 @@ class LiveSession extends Component {
 LiveSession.propTypes = {
   auth: PropTypes.object.isRequired,
   getLiveSessionList: PropTypes.func.isRequired,
+  loginUrl: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  loginUrl: state.loginUrl,
 });
 
 export default connect(mapStateToProps, {
